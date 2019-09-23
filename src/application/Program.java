@@ -8,10 +8,11 @@ public class Program {
 
 	public static void main(String[] args) {
 		
+		Calculadora calc = new Calculadora();
 		Scanner sc = new Scanner(System.in);
 		System.out.print("Insira um numero: ");
-		int num = sc.nextInt();
-		System.out.println(Calculadora.binDecimal(num));
+		String  num = sc.next();
+		System.out.println(calc.hexDecimal(num));
 		sc.close();
 	}
 
