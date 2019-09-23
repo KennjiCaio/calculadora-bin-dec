@@ -171,6 +171,47 @@ public class Calculadora {
 		}
 		return resultado;
 	}
-
+   public int hexaBin(String valor){
+      ArrayList<String> lista - new ArrayList<>();
+      String resultado = "";
+      int resultadoParcial = 0;
+      valor = valor.toUpperCase();
+      
+      for (int i = 0; i <= valor.length() - 1; i++)
+      {
+         lista.add(valor.charAt(i));
+      }
+      for(i = 0; i <= lista.size();  i++){
+         if (lista.get(i) > 9)
+         {
+            switch (valor){
+               case "A":
+                  resultadoParcial = 10;
+                  break;
+               case "B":
+                  resultadoParcial = 11;
+                  break;
+               case "C":
+                  resultadoParcial = 12;
+                  break;
+               case "D":
+                  resultadoParcial = 13;
+                  break;
+               case "E":
+                  resultadoParcial = 14;
+                  break;
+               case "F":
+                  resultadoParcial = 15;
+                  break;
+               default:
+                  return "Faz direito";
+            }
+         }
+         else{
+            resultadoParcial = Integer.parseInt(lista.get(i));
+         }
+         // CHAMAR FUNÇÃO DEC PARA BINÁRIO, MONTAR RESULTADO.
+      }
+   }
 	
 }
