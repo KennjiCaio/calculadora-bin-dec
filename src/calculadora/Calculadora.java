@@ -179,7 +179,7 @@ public class Calculadora {
       ArrayList<String> lista = new ArrayList<>();
       String resultado = "";
       String resultadoParcial = "";
-     valor = valor.toUpperCase();
+      valor = valor.toUpperCase();
      
       ArrayList<String> listaAux = new ArrayList<>();
       int aux = 0;
