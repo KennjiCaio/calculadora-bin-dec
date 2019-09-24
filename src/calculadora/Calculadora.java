@@ -23,7 +23,7 @@ public class Calculadora {
 		String valorString = String.valueOf(valor);
 		
 		for(int i = valorString.length()-1; i >= 0; i--) {
-			if (valorString.charAt(i) != 1 || valorString.charAt(i) != 0) {
+			if (valorString.charAt(i) != '1' && valorString.charAt(i) != '0') {
 				return "Faz direito";
 			}
 			lista.add(Integer.parseInt(String.valueOf(valorString.charAt(i))));
@@ -87,7 +87,7 @@ public class Calculadora {
 		for (int i = 0; i < lista.size(); i++)
 		{
 			valorParcial = lista.get(i);
-			
+
 			switch (valorParcial) {
 			case "A" : 
 				valorParcial = "10";
@@ -107,11 +107,14 @@ public class Calculadora {
 			case "F" : 
 				valorParcial = "15";
 				break;
-			default:
+		
+			}
+			try {
+			resultado += Integer.parseInt(valorParcial) * Math.pow(16, i);
+			}
+			catch (Exception e) {
 				return "Faz direito";
 			}
-			
-			resultado += Integer.parseInt(valorParcial) * Math.pow(16, i);
 		}
 		return String.valueOf(resultado);
 	}
@@ -123,7 +126,7 @@ public class Calculadora {
 		int resultadoParcial = 0;
 		
 		for(int i = 0; i <= valorString.length()-1 ; i++) {
-			if (valorString.charAt(i) != 1 || valorString.charAt(i) != 0) {
+			if (valorString.charAt(i) != '1' && valorString.charAt(i) != '0') {
 				return "Faz direito";
 			}
 
@@ -171,47 +174,87 @@ public class Calculadora {
 		}
 		return resultado;
 	}
-   public int hexaBin(String valor){
-      ArrayList<String> lista - new ArrayList<>();
+	
+   public String hexaBin(String valor){
+      ArrayList<String> lista = new ArrayList<>();
       String resultado = "";
-      int resultadoParcial = 0;
-      valor = valor.toUpperCase();
+      String resultadoParcial = "";
+     valor = valor.toUpperCase();
+     
+      ArrayList<String> listaAux = new ArrayList<>();
+      int aux = 0;
       
       for (int i = 0; i <= valor.length() - 1; i++)
       {
-         lista.add(valor.charAt(i));
+         lista.add(String.valueOf(valor.charAt(i)));
       }
-      for(i = 0; i <= lista.size();  i++){
-         if (lista.get(i) > 9)
-         {
-            switch (valor){
+      for(int i = 0; i <= lista.size() - 1; i++ )
+      {
+    	
+            switch (lista.get(i)){
                case "A":
-                  resultadoParcial = 10;
+                  resultadoParcial = "10";
+                  
                   break;
                case "B":
-                  resultadoParcial = 11;
+                  resultadoParcial = "11";
+                  
                   break;
                case "C":
-                  resultadoParcial = 12;
+                  resultadoParcial = "12";
+                 
                   break;
                case "D":
-                  resultadoParcial = 13;
+                  resultadoParcial = "13";
+                  
                   break;
                case "E":
-                  resultadoParcial = 14;
+                  resultadoParcial = "14";
+             
                   break;
                case "F":
-                  resultadoParcial = 15;
+                  resultadoParcial = "15";
                   break;
                default:
-                  return "Faz direito";
+            	   resultadoParcial = lista.get(i);
+            	  
             }
-         }
-         else{
-            resultadoParcial = Integer.parseInt(lista.get(i));
-         }
-         // CHAMAR FUNÇÃO DEC PARA BINÁRIO, MONTAR RESULTADO.
-      }
+
+            
+            try {
+            	aux = Integer.parseInt(resultadoParcial);
+            	resultadoParcial = decBinario(aux);
+
+               
+            }
+            catch(Exception e)
+            {
+            	return "Faz direito";
+            }
+            	for (int k = 0; k <= resultadoParcial.length() -1; k++)
+            	{
+            		listaAux.add(String.valueOf(resultadoParcial.charAt(k)));
+            	}
+        		if (listaAux.size() % 4 != 0)
+        		{
+        			while(listaAux.size() % 4 != 0) {
+        				resultadoParcial = "";
+        				listaAux.add(0, "0");
+        			}
+        			for (int j = 0; j <= listaAux.size() - 1; j++)
+        			{
+        				resultadoParcial += listaAux.get(j);
+        			}
+        		}
+            
+        		listaAux.clear();
+            	resultado += resultadoParcial;
+           
+         
+           }
+    	  
+         return resultado;
+  
    }
 	
 }
